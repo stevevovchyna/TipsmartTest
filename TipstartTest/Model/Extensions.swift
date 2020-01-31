@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension Collection {
     var pairs: [SubSequence] {
@@ -36,5 +37,20 @@ extension StringProtocol where Self: RangeReplaceableCollection {
         var string = self
         string.insert(separator: separator, every: n)
         return string
+    }
+}
+
+extension UIImageView {
+    func downloaded(from url: URL) {
+        contentMode = .scaleAspectFill
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+                let data = data, error == nil,
+                let image = UIImage(data: data) else { return }
+            DispatchQueue.main.async() {
+                self.image = image
+            }
+        }.resume()
     }
 }

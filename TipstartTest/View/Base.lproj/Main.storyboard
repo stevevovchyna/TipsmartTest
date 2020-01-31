@@ -16,14 +16,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dcc-7s-4SG">
-                                <rect key="frame" x="0.0" y="130" width="414" height="766"/>
+                                <rect key="frame" x="0.0" y="160" width="414" height="736"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="z1u-fe-zSd"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="6yn-1N-Zv3"/>
                                 </connections>
                             </tableView>
-                            <searchBar contentMode="redraw" searchBarStyle="minimal" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uYK-sW-gIM">
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="uYK-sW-gIM">
                                 <rect key="frame" x="0.0" y="44" width="414" height="56"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
                                 <scopeButtonTitles>
@@ -36,7 +36,10 @@
                             </searchBar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VOo-Lh-ggR">
                                 <rect key="frame" x="0.0" y="100" width="414" height="30"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="7EK-qe-cdG"/>
+                                </constraints>
                                 <state key="normal" title="Search">
                                     <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
@@ -44,34 +47,44 @@
                                     <action selector="searchButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nty-mh-DLc"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="iF6-ey-4gd">
-                                <rect key="frame" x="197" y="105" width="20" height="20"/>
-                                <color key="color" cocoaTouchSystemColor="darkTextColor"/>
-                            </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="57r-Tu-ah6">
+                                <rect key="frame" x="0.0" y="130" width="414" height="30"/>
+                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="19L-6X-7WA"/>
+                                </constraints>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Tb3-vv-YXz"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="uYK-sW-gIM" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="3XZ-6Y-lFP"/>
-                            <constraint firstItem="dcc-7s-4SG" firstAttribute="top" secondItem="VOo-Lh-ggR" secondAttribute="bottom" id="4ck-Sx-IsI"/>
+                            <constraint firstItem="VOo-Lh-ggR" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="6zm-uO-a4x"/>
                             <constraint firstItem="dcc-7s-4SG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="75d-T7-7QQ"/>
                             <constraint firstAttribute="bottom" secondItem="dcc-7s-4SG" secondAttribute="bottom" id="Atb-1b-Zl0"/>
-                            <constraint firstItem="dcc-7s-4SG" firstAttribute="top" secondItem="iF6-ey-4gd" secondAttribute="bottom" constant="5" id="B2z-1S-51p"/>
+                            <constraint firstItem="VOo-Lh-ggR" firstAttribute="top" secondItem="uYK-sW-gIM" secondAttribute="bottom" symbolic="YES" id="EXO-RK-6TW"/>
                             <constraint firstItem="uYK-sW-gIM" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="GDy-5I-gy5"/>
-                            <constraint firstItem="VOo-Lh-ggR" firstAttribute="top" secondItem="uYK-sW-gIM" secondAttribute="bottom" symbolic="YES" id="Izp-2p-l8m"/>
+                            <constraint firstItem="57r-Tu-ah6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="IPn-YC-I0L"/>
                             <constraint firstItem="dcc-7s-4SG" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="KPl-ek-cho"/>
                             <constraint firstItem="uYK-sW-gIM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="KaS-6k-0u0"/>
-                            <constraint firstItem="iF6-ey-4gd" firstAttribute="top" secondItem="uYK-sW-gIM" secondAttribute="bottom" constant="5" id="XSl-5b-BNT"/>
-                            <constraint firstItem="iF6-ey-4gd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="197" id="eOs-Gw-xav"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="iF6-ey-4gd" secondAttribute="trailing" constant="197" id="oJ1-JD-dtk"/>
-                            <constraint firstItem="VOo-Lh-ggR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="pu1-Ll-jbd"/>
-                            <constraint firstItem="VOo-Lh-ggR" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="uCK-6U-eF7"/>
+                            <constraint firstItem="57r-Tu-ah6" firstAttribute="top" secondItem="VOo-Lh-ggR" secondAttribute="bottom" id="LxF-Xd-RLu"/>
+                            <constraint firstItem="VOo-Lh-ggR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="dUc-wP-nNc"/>
+                            <constraint firstItem="57r-Tu-ah6" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="eVm-Cm-lje"/>
+                            <constraint firstItem="dcc-7s-4SG" firstAttribute="top" secondItem="57r-Tu-ah6" secondAttribute="bottom" id="m7q-J1-Wmw"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="activityIndicator" destination="iF6-ey-4gd" id="1bQ-xS-0t4"/>
+                        <outlet property="cancelButton" destination="57r-Tu-ah6" id="s7e-18-1BB"/>
+                        <outlet property="cancelButtonHeight" destination="19L-6X-7WA" id="is6-vC-JWO"/>
                         <outlet property="searchBar" destination="uYK-sW-gIM" id="4Pk-3W-D17"/>
                         <outlet property="searchButton" destination="VOo-Lh-ggR" id="s5l-ex-GQT"/>
+                        <outlet property="searchButtonHeight" destination="7EK-qe-cdG" id="XnJ-Pk-DKi"/>
                         <outlet property="tableView" destination="dcc-7s-4SG" id="OaD-r2-rlc"/>
                     </connections>
                 </viewController>

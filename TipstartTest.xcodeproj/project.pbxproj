@@ -18,6 +18,9 @@
 		10BAE7F423E453F900D32B10 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BAE7F223E453F900D32B10 /* SearchTableViewCell.swift */; };
 		10BAE7F523E453F900D32B10 /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10BAE7F323E453F900D32B10 /* SearchTableViewCell.xib */; };
 		10BAE7F723E4666700D32B10 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BAE7F623E4666700D32B10 /* Extensions.swift */; };
+		10BAE7F923E4805000D32B10 /* SearchItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BAE7F823E4805000D32B10 /* SearchItem.swift */; };
+		10BAE7FB23E4AD0F00D32B10 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BAE7FA23E4AD0F00D32B10 /* DataManager.swift */; };
+		10BAE7FD23E4DBD000D32B10 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BAE7FC23E4DBD000D32B10 /* Item.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,9 @@
 		10BAE7F223E453F900D32B10 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		10BAE7F323E453F900D32B10 /* SearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchTableViewCell.xib; sourceTree = "<group>"; };
 		10BAE7F623E4666700D32B10 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		10BAE7F823E4805000D32B10 /* SearchItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItem.swift; sourceTree = "<group>"; };
+		10BAE7FA23E4AD0F00D32B10 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		10BAE7FC23E4DBD000D32B10 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +108,9 @@
 			children = (
 				10BAE7EF23E4539F00D32B10 /* Networking.swift */,
 				10BAE7F623E4666700D32B10 /* Extensions.swift */,
+				10BAE7F823E4805000D32B10 /* SearchItem.swift */,
+				10BAE7FA23E4AD0F00D32B10 /* DataManager.swift */,
+				10BAE7FC23E4DBD000D32B10 /* Item.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -178,12 +187,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10BAE7FD23E4DBD000D32B10 /* Item.swift in Sources */,
 				10BAE7E123E452DD00D32B10 /* TipstartTest.xcdatamodeld in Sources */,
 				10BAE7F023E4539F00D32B10 /* Networking.swift in Sources */,
+				10BAE7F923E4805000D32B10 /* SearchItem.swift in Sources */,
 				10BAE7DB23E452DD00D32B10 /* ViewController.swift in Sources */,
 				10BAE7F423E453F900D32B10 /* SearchTableViewCell.swift in Sources */,
 				10BAE7D723E452DD00D32B10 /* AppDelegate.swift in Sources */,
 				10BAE7D923E452DD00D32B10 /* SceneDelegate.swift in Sources */,
+				10BAE7FB23E4AD0F00D32B10 /* DataManager.swift in Sources */,
 				10BAE7F723E4666700D32B10 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
