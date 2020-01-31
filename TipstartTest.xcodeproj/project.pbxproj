@@ -14,6 +14,10 @@
 		10BAE7E123E452DD00D32B10 /* TipstartTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 10BAE7DF23E452DD00D32B10 /* TipstartTest.xcdatamodeld */; };
 		10BAE7E323E452E000D32B10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10BAE7E223E452E000D32B10 /* Assets.xcassets */; };
 		10BAE7E623E452E000D32B10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10BAE7E423E452E000D32B10 /* LaunchScreen.storyboard */; };
+		10BAE7F023E4539F00D32B10 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BAE7EF23E4539F00D32B10 /* Networking.swift */; };
+		10BAE7F423E453F900D32B10 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BAE7F223E453F900D32B10 /* SearchTableViewCell.swift */; };
+		10BAE7F523E453F900D32B10 /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10BAE7F323E453F900D32B10 /* SearchTableViewCell.xib */; };
+		10BAE7F723E4666700D32B10 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BAE7F623E4666700D32B10 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +30,10 @@
 		10BAE7E223E452E000D32B10 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		10BAE7E523E452E000D32B10 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		10BAE7E723E452E000D32B10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		10BAE7EF23E4539F00D32B10 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		10BAE7F223E453F900D32B10 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		10BAE7F323E453F900D32B10 /* SearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchTableViewCell.xib; sourceTree = "<group>"; };
+		10BAE7F623E4666700D32B10 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,14 +68,42 @@
 			children = (
 				10BAE7D623E452DD00D32B10 /* AppDelegate.swift */,
 				10BAE7D823E452DD00D32B10 /* SceneDelegate.swift */,
-				10BAE7DA23E452DD00D32B10 /* ViewController.swift */,
-				10BAE7DC23E452DD00D32B10 /* Main.storyboard */,
+				10BAE7F123E453A700D32B10 /* Model */,
+				10BAE7ED23E4538000D32B10 /* View */,
+				10BAE7EE23E4538800D32B10 /* Controller */,
 				10BAE7E223E452E000D32B10 /* Assets.xcassets */,
-				10BAE7E423E452E000D32B10 /* LaunchScreen.storyboard */,
 				10BAE7E723E452E000D32B10 /* Info.plist */,
 				10BAE7DF23E452DD00D32B10 /* TipstartTest.xcdatamodeld */,
 			);
 			path = TipstartTest;
+			sourceTree = "<group>";
+		};
+		10BAE7ED23E4538000D32B10 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				10BAE7DC23E452DD00D32B10 /* Main.storyboard */,
+				10BAE7E423E452E000D32B10 /* LaunchScreen.storyboard */,
+				10BAE7F223E453F900D32B10 /* SearchTableViewCell.swift */,
+				10BAE7F323E453F900D32B10 /* SearchTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		10BAE7EE23E4538800D32B10 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				10BAE7DA23E452DD00D32B10 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		10BAE7F123E453A700D32B10 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				10BAE7EF23E4539F00D32B10 /* Networking.swift */,
+				10BAE7F623E4666700D32B10 /* Extensions.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -129,6 +165,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				10BAE7E623E452E000D32B10 /* LaunchScreen.storyboard in Resources */,
+				10BAE7F523E453F900D32B10 /* SearchTableViewCell.xib in Resources */,
 				10BAE7E323E452E000D32B10 /* Assets.xcassets in Resources */,
 				10BAE7DE23E452DD00D32B10 /* Main.storyboard in Resources */,
 			);
@@ -142,9 +179,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				10BAE7E123E452DD00D32B10 /* TipstartTest.xcdatamodeld in Sources */,
+				10BAE7F023E4539F00D32B10 /* Networking.swift in Sources */,
 				10BAE7DB23E452DD00D32B10 /* ViewController.swift in Sources */,
+				10BAE7F423E453F900D32B10 /* SearchTableViewCell.swift in Sources */,
 				10BAE7D723E452DD00D32B10 /* AppDelegate.swift in Sources */,
 				10BAE7D923E452DD00D32B10 /* SceneDelegate.swift in Sources */,
+				10BAE7F723E4666700D32B10 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,7 +338,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.stevevovchyna.TipstartTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -316,7 +356,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.stevevovchyna.TipstartTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
