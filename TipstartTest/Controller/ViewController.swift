@@ -87,6 +87,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         text = text.inserting(separator: "\n", every: 15)
         cell.repoName.text = text
         cell.repoUrl.text = item.repoUrl
+        cell.userImage.image = UIImage(named: "loading")
         cell.userImage.downloaded(from: URL(string: item.userImage)!)
         return cell
     }
