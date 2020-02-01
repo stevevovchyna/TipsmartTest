@@ -13,12 +13,12 @@ public class SearchItem: NSObject {
     let repoName: String
     let repoUrl: String
     let userImage: String
-    let rating: Int
+    let rating: Double
     
     init(with data: NSDictionary) {
         self.repoUrl = data["html_url"] as! String
         self.repoName = data["name"] as! String
         self.userImage = (data["owner"] as! NSDictionary)["avatar_url"] as! String
-        self.rating = data["stargazers_count"] as! Int
+        self.rating = data["score"] as! Double
     }
 }

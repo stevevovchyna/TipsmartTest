@@ -16,7 +16,7 @@ enum Result<T> {
 class Networking {
     
     let url = "https://api.github.com/search/repositories?q="
-    let options = "&sort=updated&order=desc"
+    let options = "&sort=name&order=desc"
     let httpMethod = "get"
     let session = URLSession.shared
     var currentTask: URLSessionDataTask?
