@@ -40,25 +40,12 @@ class ViewController: UIViewController, UISearchBarDelegate {
         secondTableView.dataSource = secondTVDataModel
         
         self.view.addSubview(secondTableView)
-        
-        setTableFrames()
+        checkCache()
         
         cancelButtonHeight.constant = 0
         cancelButton.isHidden = true
         
-        searchBar.text = "piscine42"
-        
-        let cache = itemManager.getAllItems()
-        if cache.count > 0, let array = cache[0].cache {
-            do {
-                let data = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(array)
-                mainTVDataModel.searchResult = self.processSearchResult(with: data as! NSArray, for: 30)
-                secondTVDataModel.searchResult = self.processSearchResult(with: data as! NSArray, for: 30)
-            } catch (let error) {
-                self.presentAlert(text: error.localizedDescription, in: self)
-            }
-        }
-        // Do any additional setup after loading the view.
+        setTableFrames()
     }
     
     @IBAction func searchButtonPressed(_ sender: UIButton) {
@@ -66,7 +53,7 @@ class ViewController: UIViewController, UISearchBarDelegate {
         searchBar.resignFirstResponder()
         if query.count > 0 {
             setSearchButton(asActive: false)
-            network.performSearch(of: query) { result in
+            network.performSearch(of: query, sortedBy: "name") { result in
                 DispatchQueue.main.async {
                     switch result {
                     case .failure(let err):
@@ -75,17 +62,22 @@ class ViewController: UIViewController, UISearchBarDelegate {
                     case .success(let data):
                         self.setSearchButton(asActive: true)
                         self.mainTVDataModel.searchResult = self.processSearchResult(with: data, for: 30)
-                        self.secondTVDataModel.searchResult = self.mainTVDataModel.searchResult
-                        self.itemManager.removeAllItems()
-                        self.itemManager.save()
-                        do {
-                            let coreData = try NSKeyedArchiver.archivedData(withRootObject: data, requiringSecureCoding: false)
-                            self.addToDB(items: coreData)
-                        } catch (let error) {
-                            self.presentAlert(text: error.localizedDescription, in: self)
-                        }
                         self.tableView.reloadData()
+                        self.itemManager.saveOrCreateNameData(for: data)
+                    }
+                }
+            }
+            network.performSearch(of: query, sortedBy: "score") { result in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .failure(let err):
+                        self.setSearchButton(asActive: true)
+                        if err != "cancelled" { self.presentAlert(text: err, in: self) }
+                    case .success(let data):
+                        self.setSearchButton(asActive: true)
+                        self.secondTVDataModel.searchResult = self.processSearchResult(with: data, for: 30)
                         self.secondTableView.reloadData()
+                        self.itemManager.saveOrCreateRatingData(for: data)
                     }
                 }
             }
@@ -99,7 +91,7 @@ class ViewController: UIViewController, UISearchBarDelegate {
 }
 
 extension ViewController {
-    override func viewSafeAreaInsetsDidChange() {
+    override func viewWillLayoutSubviews() {
         setTableFrames()
     }
 }
@@ -108,13 +100,13 @@ extension ViewController {
     private func setTableFrames() {
         let vframe = view.frame.size
         let searchBarHeight = searchBar.frame.size.height
-        let searchButtonHeight = searchButton.frame.size.height
+        let searchButtonHeight: CGFloat = 30.0
         let topInset = view.safeAreaInsets.top
         portraitTV1 = CGRect(x: 0, y: searchBarHeight + searchButtonHeight + topInset, width: vframe.width, height: vframe.height - searchBarHeight - searchButtonHeight - topInset)
         portraitTV2 = CGRect(x: 0, y: searchBarHeight + searchButtonHeight + topInset, width: vframe.width, height: vframe.height - searchBarHeight - searchButtonHeight - topInset)
-        landscapeTV1 = CGRect(x: 0, y: searchBarHeight + searchButtonHeight, width: vframe.width / 2, height: vframe.height - searchBarHeight - searchButtonHeight)
-        landscapeTV2 = CGRect(x: vframe.width / 2, y: searchBarHeight + searchButtonHeight, width: vframe.width / 2, height: vframe.height - searchBarHeight - searchButtonHeight)
-        let isPortrait = (view.frame.size.height > view.frame.size.width);
+        landscapeTV1 = CGRect(x: 0, y: searchBarHeight + searchButtonHeight + topInset, width: vframe.width / 2, height: vframe.height - searchBarHeight - searchButtonHeight)
+        landscapeTV2 = CGRect(x: vframe.width / 2, y: searchBarHeight + searchButtonHeight + topInset, width: vframe.width / 2, height: vframe.height - searchBarHeight - searchButtonHeight)
+        let isPortrait = view.frame.size.height > view.frame.size.width
         tableView.frame = isPortrait ? portraitTV1 : landscapeTV1
         secondTableView.frame = isPortrait ? portraitTV2 : landscapeTV2
         secondTableView.isHidden = isPortrait
@@ -145,10 +137,20 @@ extension ViewController {
         view.present(alert, animated: true, completion: nil)
     }
     
-    private func addToDB(items: Data) {
-        let newItem = self.itemManager.newItem()
-        newItem.cache = items
-        self.itemManager.save()
+    private func checkCache() {
+        let cache = itemManager.getAllItems()
+        if cache.count > 0 {
+            do {
+                if let nameCache = cache[0].nameCache, let ratingCache = cache[0].ratingCache {
+                    let nameData = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(nameCache)
+                    let ratingData = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(ratingCache)
+                    mainTVDataModel.searchResult = self.processSearchResult(with: nameData as! NSArray, for: 30)
+                    secondTVDataModel.searchResult = self.processSearchResult(with: ratingData as! NSArray, for: 30)
+                }
+            } catch (let error) {
+                self.presentAlert(text: error.localizedDescription, in: self)
+            }
+        }
     }
 }
 

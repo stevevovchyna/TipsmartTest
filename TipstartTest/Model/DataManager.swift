@@ -41,6 +41,42 @@ public class ItemManager : NSObject {
         return NSEntityDescription.insertNewObject(forEntityName: "Cache", into: context) as! Cache
     }
     
+    public func saveOrCreateNameData(for data: NSArray) {
+        let cache = getAllItems()
+        do {
+            if cache.count > 0 {
+                let nameData = try NSKeyedArchiver.archivedData(withRootObject: data, requiringSecureCoding: false)
+                cache[0].nameCache = nameData
+                save()
+            } else {
+                let nameData = try NSKeyedArchiver.archivedData(withRootObject: data, requiringSecureCoding: false)
+                let newCache = newItem()
+                newCache.nameCache = nameData
+                save()
+            }
+        } catch (let error) {
+            fatalError("Error saving data: \(error)")
+        }
+    }
+    
+    public func saveOrCreateRatingData(for data: NSArray) {
+        let cache = getAllItems()
+        do {
+            if cache.count > 0 {
+                let ratingData = try NSKeyedArchiver.archivedData(withRootObject: data, requiringSecureCoding: false)
+                cache[0].ratingCache = ratingData
+                save()
+            } else {
+                let ratingData = try NSKeyedArchiver.archivedData(withRootObject: data, requiringSecureCoding: false)
+                let newCache = newItem()
+                newCache.ratingCache = ratingData
+                save()
+            }
+        } catch (let error) {
+            fatalError("Error saving data: \(error)")
+        }
+    }
+    
     func fetchData(predicate : NSPredicate) -> [Cache] {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Cache")
         

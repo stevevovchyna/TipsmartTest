@@ -15,6 +15,7 @@ public class Cache : NSManagedObject {
         return NSFetchRequest<Cache>(entityName: "Cache")
     }
 
-    @NSManaged public var cache: Data?
+    @NSManaged public var nameCache: Data?
+    @NSManaged public var ratingCache: Data?
 
 }

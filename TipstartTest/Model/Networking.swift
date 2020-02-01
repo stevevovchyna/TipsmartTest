@@ -16,14 +16,15 @@ enum Result<T> {
 class Networking {
     
     let url = "https://api.github.com/search/repositories?q="
-    let options = "&sort=name&order=desc"
+    let sortParam = "&sort="
+    let orderParam =  "&order=desc"
     let httpMethod = "get"
     let session = URLSession.shared
-    var currentTask: URLSessionDataTask?
+    var currentTasks: [URLSessionDataTask] = []
     
-    func performSearch(of userQuery: String, done: @escaping (Result<NSArray>) -> ()) {
-        let request = formRequest(with: userQuery)
-        currentTask = session.dataTask(with: request) { (data, response, error) in
+    public func performSearch(of userQuery: String, sortedBy sortType: String, done: @escaping (Result<NSArray>) -> ()) {
+        let request = formRequest(with: userQuery, sortedBy: sortType)
+        let task = session.dataTask(with: request) { (data, response, error) in
             if let error = error {
                 return done(.failure(error.localizedDescription))
             }
@@ -38,19 +39,22 @@ class Networking {
             }
             done(.success(result))
         }
-        guard currentTask != nil else { return }
-        currentTask!.resume()
+        currentTasks.append(task)
+        task.resume()
     }
     
-    func cancelSearch() {
-        guard currentTask != nil else { return }
-        self.currentTask!.cancel()
-        currentTask = nil
+    public func cancelSearch() {
+        if currentTasks.count > 0 {
+            for task in currentTasks {
+                task.cancel()
+            }
+            currentTasks.removeAll()
+        }
     }
     
-    private func formRequest(with userQuery: String) -> URLRequest {
+    private func formRequest(with userQuery: String, sortedBy sortOrder: String) -> URLRequest {
         let query = userQuery.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
-        let urlString = url + query! + options
+        let urlString = url + query! + sortParam + sortOrder + orderParam
         let url = URL(string: urlString)
         var request = URLRequest(url: url!)
         request.httpMethod = httpMethod
