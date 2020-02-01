@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10B20B2C23E5AB6200A340BB /* TableViewDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B20B2B23E5AB6200A340BB /* TableViewDataModel.swift */; };
 		10BAE7D723E452DD00D32B10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BAE7D623E452DD00D32B10 /* AppDelegate.swift */; };
 		10BAE7D923E452DD00D32B10 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BAE7D823E452DD00D32B10 /* SceneDelegate.swift */; };
 		10BAE7DB23E452DD00D32B10 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BAE7DA23E452DD00D32B10 /* ViewController.swift */; };
@@ -20,10 +21,11 @@
 		10BAE7F723E4666700D32B10 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BAE7F623E4666700D32B10 /* Extensions.swift */; };
 		10BAE7F923E4805000D32B10 /* SearchItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BAE7F823E4805000D32B10 /* SearchItem.swift */; };
 		10BAE7FB23E4AD0F00D32B10 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BAE7FA23E4AD0F00D32B10 /* DataManager.swift */; };
-		10BAE7FD23E4DBD000D32B10 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BAE7FC23E4DBD000D32B10 /* Item.swift */; };
+		10BAE7FD23E4DBD000D32B10 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BAE7FC23E4DBD000D32B10 /* Cache.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		10B20B2B23E5AB6200A340BB /* TableViewDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataModel.swift; sourceTree = "<group>"; };
 		10BAE7D323E452DD00D32B10 /* TipstartTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TipstartTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10BAE7D623E452DD00D32B10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		10BAE7D823E452DD00D32B10 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,7 +41,7 @@
 		10BAE7F623E4666700D32B10 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		10BAE7F823E4805000D32B10 /* SearchItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItem.swift; sourceTree = "<group>"; };
 		10BAE7FA23E4AD0F00D32B10 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		10BAE7FC23E4DBD000D32B10 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		10BAE7FC23E4DBD000D32B10 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,7 +112,8 @@
 				10BAE7F623E4666700D32B10 /* Extensions.swift */,
 				10BAE7F823E4805000D32B10 /* SearchItem.swift */,
 				10BAE7FA23E4AD0F00D32B10 /* DataManager.swift */,
-				10BAE7FC23E4DBD000D32B10 /* Item.swift */,
+				10BAE7FC23E4DBD000D32B10 /* Cache.swift */,
+				10B20B2B23E5AB6200A340BB /* TableViewDataModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -187,7 +190,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				10BAE7FD23E4DBD000D32B10 /* Item.swift in Sources */,
+				10BAE7FD23E4DBD000D32B10 /* Cache.swift in Sources */,
 				10BAE7E123E452DD00D32B10 /* TipstartTest.xcdatamodeld in Sources */,
 				10BAE7F023E4539F00D32B10 /* Networking.swift in Sources */,
 				10BAE7F923E4805000D32B10 /* SearchItem.swift in Sources */,
@@ -197,6 +200,7 @@
 				10BAE7D923E452DD00D32B10 /* SceneDelegate.swift in Sources */,
 				10BAE7FB23E4AD0F00D32B10 /* DataManager.swift in Sources */,
 				10BAE7F723E4666700D32B10 /* Extensions.swift in Sources */,
+				10B20B2C23E5AB6200A340BB /* TableViewDataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,8 +15,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dcc-7s-4SG">
-                                <rect key="frame" x="0.0" y="160" width="414" height="736"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dcc-7s-4SG">
+                                <rect key="frame" x="0.0" y="201" width="414" height="695"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="z1u-fe-zSd"/>
@@ -65,17 +66,13 @@
                         <constraints>
                             <constraint firstItem="uYK-sW-gIM" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="3XZ-6Y-lFP"/>
                             <constraint firstItem="VOo-Lh-ggR" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="6zm-uO-a4x"/>
-                            <constraint firstItem="dcc-7s-4SG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="75d-T7-7QQ"/>
-                            <constraint firstAttribute="bottom" secondItem="dcc-7s-4SG" secondAttribute="bottom" id="Atb-1b-Zl0"/>
                             <constraint firstItem="VOo-Lh-ggR" firstAttribute="top" secondItem="uYK-sW-gIM" secondAttribute="bottom" symbolic="YES" id="EXO-RK-6TW"/>
                             <constraint firstItem="uYK-sW-gIM" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="GDy-5I-gy5"/>
                             <constraint firstItem="57r-Tu-ah6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="IPn-YC-I0L"/>
-                            <constraint firstItem="dcc-7s-4SG" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="KPl-ek-cho"/>
                             <constraint firstItem="uYK-sW-gIM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="KaS-6k-0u0"/>
                             <constraint firstItem="57r-Tu-ah6" firstAttribute="top" secondItem="VOo-Lh-ggR" secondAttribute="bottom" id="LxF-Xd-RLu"/>
                             <constraint firstItem="VOo-Lh-ggR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="dUc-wP-nNc"/>
                             <constraint firstItem="57r-Tu-ah6" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="eVm-Cm-lje"/>
-                            <constraint firstItem="dcc-7s-4SG" firstAttribute="top" secondItem="57r-Tu-ah6" secondAttribute="bottom" id="m7q-J1-Wmw"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

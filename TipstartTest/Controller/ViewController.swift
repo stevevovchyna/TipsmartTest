@@ -17,22 +17,43 @@ class ViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet weak var cancelButtonHeight: NSLayoutConstraint!
     @IBOutlet weak var searchButtonHeight: NSLayoutConstraint!
     
+    var portraitTV1 = CGRect()
+    var portraitTV2 = CGRect()
+    var landscapeTV1 = CGRect()
+    var landscapeTV2 = CGRect()
+    
     let network = Networking()
     let itemManager = ItemManager()
-    var searchResult: [SearchItem] = []
-    
+    let mainTVDataModel = TableViewDataModel(sortedBy: .name)
+    let secondTVDataModel = TableViewDataModel(sortedBy: .rating)
+    let secondTableView = UITableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.register(UINib(nibName: "SearchTableViewCell", bundle: nil), forCellReuseIdentifier: "searchCell")
+        tableView.delegate = mainTVDataModel
+        tableView.dataSource = mainTVDataModel
+        
+        secondTableView.register(UINib(nibName: "SearchTableViewCell", bundle: nil), forCellReuseIdentifier: "searchCell")
+        secondTableView.delegate = secondTVDataModel
+        secondTableView.dataSource = secondTVDataModel
+        
+        self.view.addSubview(secondTableView)
+        
+        setTableFrames()
+        
         cancelButtonHeight.constant = 0
         cancelButton.isHidden = true
+        
         searchBar.text = "piscine42"
+        
         let cache = itemManager.getAllItems()
         if cache.count > 0, let array = cache[0].cache {
             do {
                 let data = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(array)
-                searchResult = self.processSearchResult(with: data as! NSArray, for: 30)
+                mainTVDataModel.searchResult = self.processSearchResult(with: data as! NSArray, for: 30)
+                secondTVDataModel.searchResult = self.processSearchResult(with: data as! NSArray, for: 30)
             } catch (let error) {
                 self.presentAlert(text: error.localizedDescription, in: self)
             }
@@ -53,7 +74,8 @@ class ViewController: UIViewController, UISearchBarDelegate {
                         if err != "cancelled" { self.presentAlert(text: err, in: self) }
                     case .success(let data):
                         self.setSearchButton(asActive: true)
-                        self.searchResult = self.processSearchResult(with: data, for: 30)
+                        self.mainTVDataModel.searchResult = self.processSearchResult(with: data, for: 30)
+                        self.secondTVDataModel.searchResult = self.mainTVDataModel.searchResult
                         self.itemManager.removeAllItems()
                         self.itemManager.save()
                         do {
@@ -63,6 +85,7 @@ class ViewController: UIViewController, UISearchBarDelegate {
                             self.presentAlert(text: error.localizedDescription, in: self)
                         }
                         self.tableView.reloadData()
+                        self.secondTableView.reloadData()
                     }
                 }
             }
@@ -75,32 +98,28 @@ class ViewController: UIViewController, UISearchBarDelegate {
     }
 }
 
-extension ViewController: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchResult.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath) as! SearchTableViewCell
-        let item = searchResult[indexPath.row]
-        var text = item.repoName
-        text = text.inserting(separator: "\n", every: 15)
-        cell.repoName.text = text
-        cell.repoUrl.text = item.repoUrl
-        cell.userImage.image = UIImage(named: "loading")
-        cell.userImage.downloaded(from: URL(string: item.userImage)!)
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if searchResult.count > 0, let url = URL(string: searchResult[indexPath.row].repoUrl) {
-            tableView.cellForRow(at: indexPath)?.isSelected = false
-            UIApplication.shared.open(url)
-        }
+extension ViewController {
+    override func viewSafeAreaInsetsDidChange() {
+        setTableFrames()
     }
 }
 
 extension ViewController {
+    private func setTableFrames() {
+        let vframe = view.frame.size
+        let searchBarHeight = searchBar.frame.size.height
+        let searchButtonHeight = searchButton.frame.size.height
+        let topInset = view.safeAreaInsets.top
+        portraitTV1 = CGRect(x: 0, y: searchBarHeight + searchButtonHeight + topInset, width: vframe.width, height: vframe.height - searchBarHeight - searchButtonHeight - topInset)
+        portraitTV2 = CGRect(x: 0, y: searchBarHeight + searchButtonHeight + topInset, width: vframe.width, height: vframe.height - searchBarHeight - searchButtonHeight - topInset)
+        landscapeTV1 = CGRect(x: 0, y: searchBarHeight + searchButtonHeight, width: vframe.width / 2, height: vframe.height - searchBarHeight - searchButtonHeight)
+        landscapeTV2 = CGRect(x: vframe.width / 2, y: searchBarHeight + searchButtonHeight, width: vframe.width / 2, height: vframe.height - searchBarHeight - searchButtonHeight)
+        let isPortrait = (view.frame.size.height > view.frame.size.width);
+        tableView.frame = isPortrait ? portraitTV1 : landscapeTV1
+        secondTableView.frame = isPortrait ? portraitTV2 : landscapeTV2
+        secondTableView.isHidden = isPortrait
+    }
+    
     private func processSearchResult(with array: NSArray, for number: Int) -> [SearchItem] {
         var allResults: [SearchItem] = []
         let upperRange = array.count <= number ? array.count : number

@@ -70,7 +70,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="FUn-31-Wap" secondAttribute="bottom" id="28p-8v-67S"/>
-                            <constraint firstAttribute="width" constant="88" id="DJJ-ul-FJD"/>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="88" id="DJJ-ul-FJD"/>
                             <constraint firstItem="FUn-31-Wap" firstAttribute="top" secondItem="L63-4g-MPP" secondAttribute="top" id="RaQ-2V-giC"/>
                             <constraint firstAttribute="height" constant="88" id="T3R-RM-9Bj"/>
                             <constraint firstAttribute="trailing" secondItem="FUn-31-Wap" secondAttribute="trailing" id="eTu-3T-8O6"/>
